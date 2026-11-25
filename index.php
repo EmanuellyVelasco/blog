@@ -8,7 +8,8 @@ $posts = $stmt->fetchAll();
 
 // Mensagens que aparecem depois de criar, editar ou excluir um post
 $mensagens = [
-    'criado' => 'Post criado com sucesso!'
+    'criado' => 'Post criado com sucesso!',
+    'editado' => 'Post editado com sucesso!'
 ];
 $msg = $_GET['msg'] ?? '';
 

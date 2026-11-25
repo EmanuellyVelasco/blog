@@ -25,6 +25,10 @@ include 'includes/cabecalho.php';
         <h2><?= htmlspecialchars($post['titulo']) ?></h2>
         <p class="data">Publicado em <?= date('d/m/Y', strtotime($post['data_publicacao'])) ?></p>
         <p><?= nl2br(htmlspecialchars($post['conteudo'])) ?></p>
+
+        <div classe="acoes">
+            <a href="editar.php?id=<?= $post['id'] ?>">Editar</a>
+        </div>
     </article>
     <a href="index.php">Voltar</a>
 <?php endif; ?>
