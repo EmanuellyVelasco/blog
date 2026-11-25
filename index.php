@@ -9,7 +9,8 @@ $posts = $stmt->fetchAll();
 // Mensagens que aparecem depois de criar, editar ou excluir um post
 $mensagens = [
     'criado' => 'Post criado com sucesso!',
-    'editado' => 'Post editado com sucesso!'
+    'editado' => 'Post editado com sucesso!',
+    'excluido' => 'Post excluído com sucesso!'
 ];
 $msg = $_GET['msg'] ?? '';
 
@@ -43,6 +44,14 @@ include 'includes/cabecalho.php';
         }
         ?>
         <p><?= htmlspecialchars($trecho) ?></p>
+
+        <div classe="acoes">
+            <a href="editar.php?id=<?= $post['id'] ?>">Editar</a>
+            <form action="excluir.php" method="post" class="form-excluir">
+                <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                <button type="submit" class="botao-excluir">Excluir</button>
+            </form>
+        </div>
     </article>
 <?php endforeach; ?>
 

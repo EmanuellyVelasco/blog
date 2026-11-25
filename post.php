@@ -28,6 +28,10 @@ include 'includes/cabecalho.php';
 
         <div classe="acoes">
             <a href="editar.php?id=<?= $post['id'] ?>">Editar</a>
+            <form action="excluir.php" method="post"class="form-excluir">
+                <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                <button type="submit" class="botao-excluir">Excluir</button>
+            </form>
         </div>
     </article>
     <a href="index.php">Voltar</a>
