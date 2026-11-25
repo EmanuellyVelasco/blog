@@ -6,8 +6,18 @@ $sql = 'SELECT * FROM posts ORDER BY data_publicacao DESC, id DESC';
 $stmt = $pdo->query($sql);
 $posts = $stmt->fetchAll();
 
+// Mensagens que aparecem depois de criar, editar ou excluir um post
+$mensagens = [
+    'criado' => 'Post criado com sucesso!'
+];
+$msg = $_GET['msg'] ?? '';
+
 include 'includes/cabecalho.php';
 ?>
+
+<?php if (isset($mensagens[$msg])): ?>
+    <div class="sucesso"><?= $mensagens[$msg] ?></div>
+<?php endif; ?>
 
 <h2>Posts</h2>
 

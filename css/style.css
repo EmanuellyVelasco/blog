@@ -74,3 +74,65 @@ footer {
     color: #888;
     font-size: 14px;
 }
+
+.formulario {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.formulario label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.formulario button {
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #3d566e;
+}
+
+.erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.erro p {
+    margin: 5px 0;
+}
+
+.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
