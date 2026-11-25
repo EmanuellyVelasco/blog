@@ -1,9 +1,25 @@
 <?php
 require 'conexao.php';
 
-// Busca todos os posts, do mais recente para o mais antigo
-$sql = 'SELECT * FROM posts ORDER BY data_publicacao DESC, id DESC';
-$stmt = $pdo->query($sql);
+// Palavra digitada no campo de busca (se tiver)
+$busca = trim($_GET['busca'] ?? '');
+
+if ($busca != '') {
+    // Procura a palavra no título ou no conteúdo
+    $sql = 'SELECT * FROM posts
+            WHERE titulo LIKE :busca1 OR conteudo LIKE :busca2
+            ORDER BY data_publicacao DESC, id DESC';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':busca1' => '%' . $busca . '%',
+        ':busca2' => '%' . $busca . '%'
+    ]);
+} else {
+    // Busca todos os posts, do mais recente para o mais antigo
+    $sql = 'SELECT * FROM posts ORDER BY data_publicacao DESC, id DESC';
+    $stmt = $pdo->query($sql);
+}
+
 $posts = $stmt->fetchAll();
 
 // Mensagens que aparecem depois de criar, editar ou excluir um post
@@ -21,7 +37,20 @@ include 'includes/cabecalho.php';
     <div class="sucesso"><?= $mensagens[$msg] ?></div>
 <?php endif; ?>
 
-<h2>Posts</h2>
+<form method="get" action="index.php" class="busca">
+    <input type="text" name="busca" placeholder="Buscar posts..."
+           value="<?= htmlspecialchars($busca) ?>">
+    <button type="submit">Buscar</button>
+    <?php if ($busca != ''): ?>
+        <a href="index.php">Limpar busca</a>
+    <?php endif; ?>
+</form>
+
+<?php if ($busca != ''): ?>
+    <h2>Resultados para "<?= htmlspecialchars($busca) ?>"</h2>
+<?php else: ?>
+    <h2>Posts</h2>
+<?php endif; ?>
 
 <?php if (count($posts) == 0): ?>
     <p>Nenhum post encontrado.</p>
@@ -45,7 +74,7 @@ include 'includes/cabecalho.php';
         ?>
         <p><?= htmlspecialchars($trecho) ?></p>
 
-        <div classe="acoes">
+        <div class="acoes">
             <a href="editar.php?id=<?= $post['id'] ?>">Editar</a>
             <form action="excluir.php" method="post" class="form-excluir">
                 <input type="hidden" name="id" value="<?= $post['id'] ?>">

@@ -161,3 +161,18 @@ button:hover {
 .botao-excluir:hover {
     background-color: #e74c3c;
 }
+
+.busca {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.busca input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+}
