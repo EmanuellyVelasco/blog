@@ -42,7 +42,7 @@ Se aparecer `Permission denied` ao clonar no Linux, execute `sudo git clone http
 5. Acesse no navegador:
 
    ```
-   http://localhost/blog-simples
+   http://localhost/blog/
    ```
 
 ## Estrutura do projeto
